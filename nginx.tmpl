@@ -291,6 +291,8 @@ server {
 	{{ else if (exists "/etc/nginx/vhost.d/default") }}
 	include /etc/nginx/vhost.d/default;
 	{{ end }}
+	
+	client_max_body_size 30M;
 
 	location / {
 		{{ if eq $proto "uwsgi" }}
@@ -338,7 +340,9 @@ server {
 	{{ else if (exists "/etc/nginx/vhost.d/default") }}
 	include /etc/nginx/vhost.d/default;
 	{{ end }}
-
+	
+	client_max_body_size 30M;
+	
 	location / {
 		{{ if eq $proto "uwsgi" }}
 		include uwsgi_params;
